@@ -4,5 +4,5 @@ mount --bind /root/disk /mnt/disk
 
 /root/Xware/portal
 
-read
+tail -
 
