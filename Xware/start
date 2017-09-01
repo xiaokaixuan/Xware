@@ -12,7 +12,7 @@ do
 	wait
 	pid=
 
-	ps -fe | grep ETMDaemon | grep -v grep
+	ps -fe | grep ETMDaemon | grep -v grep > /dev/null
 	if [ $? -ne 0 ]
 	then
 			echo "Restart process..."
