@@ -4,5 +4,19 @@ mount --bind /root/disk /mnt/disk
 
 /root/Xware/portal
 
-tail -f /dev/null
+pid=
+trap '[[ $pid ]] && kill $pid; /root/Xware/portal -s; exit 0' SIGINT SIGTERM
+while :
+do 
+	sleep 60 & pid=$!
+	wait
+	pid=
+
+	ps -fe | grep ETMDaemon | grep -v grep
+	if [ $? -ne 0 ]
+	then
+			echo "Restart process..."
+			/root/Xware/portal
+	fi
+done
 
