@@ -1,8 +1,9 @@
 ### Docker-Xware
 ```bash
 # Run Xware
-docker run -d --privileged -v /root/disk:/root/disk xiaokaixuan/xware
+docker run -d --privileged --name xware -v ~/disk:/root/disk xware
 
 # Get Xware code
-docker logs container-id
+docker logs container-id or name
 ```
+

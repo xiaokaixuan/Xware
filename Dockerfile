@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y nginx lib32z1 l
 RUN echo '\n\nserver {\n\
 	listen 9100;\n\
 	location / {\n\
+		add_header Access-Control-Allow-Origin *;\n\
+		add_header Access-Control-Allow-Headers X-Requested-With;\n\
+		add_header Access-Control-Allow-Methods GET,POST,OPTIONS;\n\
 		proxy_redirect off;\n\
 		proxy_set_header Host $host;\n\
 		proxy_set_header X-Real-IP $remote_addr;\n\
