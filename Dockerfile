@@ -8,7 +8,7 @@ COPY sources.list /etc/apt/
 
 RUN apt-get update && apt-get install --no-install-recommends -y nginx lib32z1 lib32ncurses5 lib32bz2-1.0 2>/dev/null && apt-get clean
 
-ADD rootfs.tar.gz /
+ADD rootfs /
 ADD Xware /root/Xware
 
 RUN chmod a+x /root/Xware/*
