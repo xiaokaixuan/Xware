@@ -8,12 +8,12 @@ COPY sources.list /etc/apt/
 
 RUN apt-get update && apt-get install --no-install-recommends -y nginx lib32z1 lib32ncurses5 lib32bz2-1.0 2>/dev/null && apt-get clean
 
-COPY default /etc/nginx/sites-enabled/default
+ADD rootfs.tar.gz /
+ADD Xware /root/Xware
+
+RUN chmod a+x /root/Xware/*
 
 RUN mkdir /root/disk /mnt/disk
-
-ADD Xware /root/Xware
-RUN chmod a+x /root/Xware/*
 
 EXPOSE 80
 
