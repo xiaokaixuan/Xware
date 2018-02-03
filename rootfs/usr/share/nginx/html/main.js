@@ -31,8 +31,9 @@ proto.genCode = function (taskId, filename, size, speed, progress, state) {
     size = (size / 1024 / 1024).toFixed(2);
     speed = (speed / 1024).toFixed(2);
     progress = (progress / 100).toFixed(2);
-    var icon = 'icon-check"';
-    if (state == 9) icon = 'icon-clock"';
+    var icon = 'icon-cart';
+    if (state == 9) icon = 'icon-clock';
+    else if (state == 11) icon = 'icon-check';
     else if (!state) icon = 'icon-download';
     return `<div class="list-block" id="${taskId}">
     <ul>
@@ -238,6 +239,14 @@ function schemeUpdate() {
     $("#downurl").bind('input propertychange change', event => {
         const regex = event.currentTarget.value.match(/^.+\/([^\?]*).*$/);
         if (regex && regex[1]) return $('#filename').val(regex[1].trim());
+    });
+    $(document).on('click', '#dark', () => {
+        const page = $('.page-group'), popup = $('.popup');
+        if (page.hasClass('theme-dark')) {
+            page.removeClass('theme-dark'); popup.removeClass('theme-dark');
+        } else {
+            page.addClass('theme-dark'); popup.addClass('theme-dark');
+        }
     });
 })();
 
