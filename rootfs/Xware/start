@@ -2,12 +2,10 @@
 
 /usr/sbin/nginx -c /etc/nginx/nginx.conf
 
-mount --bind /root/disk /mnt/disk
-
-/root/Xware/portal
+/Xware/portal
 
 pid=
-trap '[[ $pid ]] && kill $pid; /root/Xware/portal -s; exit 0' SIGINT SIGTERM
+trap '[[ $pid ]] && kill $pid; /Xware/portal -s; exit 0' SIGINT SIGTERM
 while :
 do 
 	sleep 60 & pid=$!
@@ -17,7 +15,7 @@ do
 	ps -ef | grep ETMDaemon | grep -v grep > /dev/null
 	if [ $? -ne 0 ]
 	then
-		/root/Xware/portal
+		/Xware/portal
 	fi
 done
 

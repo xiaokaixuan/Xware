@@ -2,20 +2,20 @@ FROM daocloud.io/library/ubuntu:14.04
 
 MAINTAINER xiaokaixuan xiaokaixuan@mail.com
 
-RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
-RUN mv /etc/apt/sources.list /etc/apt/sources.list.old
-COPY sources.list /etc/apt/
+ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install --no-install-recommends -y nginx lib32z1 lib32ncurses5 lib32bz2-1.0 2>/dev/null && apt-get clean
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
+ADD sources.list /etc/apt/
+RUN apt-get update && apt-get install --no-install-recommends -y nginx lib32z1 lib32ncurses5 lib32bz2-1.0 2>/dev/null \
+    && apt-get clean
 
 ADD rootfs /
-ADD Xware /root/Xware
-
-RUN chmod a+x /root/Xware/*
-
-RUN mkdir /root/disk /mnt/disk
+RUN chmod a+x /Xware/* && mkdir /data
+    
+VOLUME ["/data"]
 
 EXPOSE 80
 
-ENTRYPOINT ["/root/Xware/start"]
+ENTRYPOINT ["/Xware/start"]
 
