@@ -215,8 +215,10 @@ const app = new Application();
 function schemeUpdate() {
     var timer = setTimeout(() => {
         clearTimeout(timer);
+        var timeout = setTimeout(schemeUpdate, 5000);
         app.updateList(() => {
             app.updateUI();
+            clearTimeout(timeout);
             return schemeUpdate();
         });
     }, 2000);
