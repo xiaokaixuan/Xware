@@ -8,7 +8,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shangh
 
 # ADD sources.list /etc/apt/
 RUN apt-get update; \
-    apt-get install --no-install-recommends -y nginx lib32z1 2>/dev/null; \
+    apt-get install --no-install-recommends -y procps nginx lib32z1 2>/dev/null; \
     apt-get clean
 
 ADD rootfs /
